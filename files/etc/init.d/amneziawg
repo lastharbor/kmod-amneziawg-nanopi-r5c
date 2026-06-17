@@ -1,0 +1,15 @@
+#!/bin/sh /etc/rc.common
+# Load amneziawg.ko before netifd (depmod segfaults on this image)
+START=19
+STOP=89
+KREL="6.1.141"
+load_module() {
+	grep -q '^amneziawg ' /proc/modules && return 0
+	K="/lib/modules/$KREL"
+	for m in udp_tunnel ip6_udp_tunnel libchacha20poly1305 libcurve25519_generic; do
+		grep -q "^${m} " /proc/modules 2>/dev/null || insmod "$K/${m}.ko" 2>/dev/null
+	done
+	insmod "$K/amneziawg.ko" 2>/dev/null
+}
+start() { load_module; }
+stop() { rmmod amneziawg 2>/dev/null; }
