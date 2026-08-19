@@ -41,7 +41,7 @@ Source: amnezia-vpn/amneziawg-linux-kernel-module
 Section: kernel
 Architecture: $ARCH_PKG
 Installed-Size: $ISIZE
-Description: AmneziaWG kernel module $AWG_VERSION (I1/CPS) for FriendlyWRT
+Description: AmneziaWG kernel module $AWG_VERSION for FriendlyWRT
  kernel $KREL on NanoPi R5C (RK3568). Built out-of-tree against the
  FriendlyElec vendor kernel; loaded via /etc/init.d/amneziawg because
  depmod segfaults on this image.
